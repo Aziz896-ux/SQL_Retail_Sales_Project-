@@ -4,7 +4,7 @@
 
 **Project Title**: Retail Sales Analysis  
 **Level**: Beginner  
-**Database**: `p1_retail_db`
+**Database**: `SQL_Project`
 
 This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
@@ -19,26 +19,27 @@ This project is designed to demonstrate SQL skills and techniques typically used
 
 ### 1. Database Setup
 
-- **Database Creation**: The project starts by creating a database named `p1_retail_db`.
-- **Table Creation**: A table named `retail_sales` is created to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.
+- **Database Creation**: The project starts by creating a database named `SQL_Project`.
+- **Table Creation**: A table named `Retail_Sales` is created to store the sales data. The table structure includes columns for transaction ID, sale date, sale time, customer ID, gender, age, product category, quantity sold, price per unit, cost of goods sold (COGS), and total sale amount.
 
-```sql
-CREATE DATABASE p1_retail_db;
+```SQL Retail sales analysis - P1
+CREATE DATABASE SQL_Project;
 
-CREATE TABLE retail_sales
-(
-    transactions_id INT PRIMARY KEY,
-    sale_date DATE,	
-    sale_time TIME,
-    customer_id INT,	
-    gender VARCHAR(10),
-    age INT,
-    category VARCHAR(35),
-    quantity INT,
-    price_per_unit FLOAT,	
-    cogs FLOAT,
-    total_sale FLOAT
-);
+CREATE TABLE Retail_Sales
+			(
+				transactions_id	INT PRIMARY KEY , 
+				sale_date DATE , 
+				sale_time	TIME, 
+				customer_id	INT, 
+				gender	VARCHAR(15),
+				age	INT,
+				category VARCHAR(15),	
+				quantiy	INT, 
+				price_per_unit FLOAT,	
+				cogs FLOAT, 
+				total_sale FLOAT
+			)
+
 ```
 
 ### 2. Data Exploration & Cleaning
@@ -49,28 +50,47 @@ CREATE TABLE retail_sales
 - **Null Value Check**: Check for any null values in the dataset and delete records with missing data.
 
 ```sql
-SELECT COUNT(*) FROM retail_sales;
-SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
-SELECT DISTINCT category FROM retail_sales;
+SELECT * From Retail_sales
+LIMIT 10 
 
-SELECT * FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+SELECT COUNT(*) From Retail_sales
 
-DELETE FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+
+SELECT * From Retail_sales 
+WHERE transactions_id IS NULL 
+
+
+SELECT * From Retail_sales 
+WHERE sale_date IS NULL 
+
+SELECT * From Retail_sales 
+WHERE transactions_id IS NULL 
+OR sale_date IS NULL 
+OR sale_time IS NULL
+OR gender IS NULL 
+OR category IS NULL 
+OR quantiy IS NULL 
+OR cogs IS NULL 
+OR total_sale IS NULL 
+
+
+
+DELETE FROM Retail_sales 
+WHERE transactions_id IS NULL 
+OR sale_date IS NULL 
+OR sale_time IS NULL
+OR gender IS NULL 
+OR category IS NULL 
+OR quantiy IS NULL 
+OR cogs IS NULL 
+OR total_sale IS NULL 
 ```
 
 ### 3. Data Analysis & Findings
 
 The following SQL queries were developed to answer specific business questions:
 
-1. **Write a SQL query to retrieve all columns for sales made on '2022-11-05**:
+1. **Write a SQL query to retrieve all columns for sales made on '2022-11-05:**
 ```sql
 SELECT *
 FROM retail_sales
@@ -87,7 +107,7 @@ WHERE
     AND 
     TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
     AND
-    quantity >= 4
+    quantiy > 4
 ```
 
 3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
@@ -189,39 +209,21 @@ GROUP BY shift
 
 ## Findings
 
-- **Customer Demographics**: The dataset includes customers from various age groups, with sales distributed across different categories such as Clothing and Beauty.
-- **High-Value Transactions**: Several transactions had a total sale amount greater than 1000, indicating premium purchases.
-- **Sales Trends**: Monthly analysis shows variations in sales, helping identify peak seasons.
-- **Customer Insights**: The analysis identifies the top-spending customers and the most popular product categories.
+- **Customer Demographics**: The dataset covers customers from different age groups and provides insights into purchasing behavior across categories such as Clothing and Beauty.
+- **High-Value Sales**: The analysis highlights several transactions exceeding 1000 in total sales, reflecting higher-value purchases.
+- **Sales Patterns**: Monthly and shift-based analysis reveals fluctuations in sales activity and helps identify periods of stronger performance.
+- **Customer Behavior**: The analysis highlights the customers generating the highest sales and provides an overview of customer distribution across product categories.
 
 ## Reports
 
-- **Sales Summary**: A detailed report summarizing total sales, customer demographics, and category performance.
-- **Trend Analysis**: Insights into sales trends across different months and shifts.
-- **Customer Insights**: Reports on top customers and unique customer counts per category.
+- **Sales Performance**: A summary of overall sales, customer characteristics, and category-level performance.
+- **Sales Trends**: An overview of how sales vary across different months and shifts.
+- **Customer Analysis**: Insights into the highest-spending customers and the number of unique customers within each category.
 
 ## Conclusion
 
-This project serves as a comprehensive introduction to SQL for data analysts, covering database setup, data cleaning, exploratory data analysis, and business-driven SQL queries. The findings from this project can help drive business decisions by understanding sales patterns, customer behavior, and product performance.
+This project provided practical experience in using SQL for data analysis, from creating and cleaning a database to exploring data and answering business-related questions. The analysis demonstrates how SQL can be used to uncover sales patterns, understand customer behavior, and evaluate category performance. These insights can support data-driven decision-making and help businesses better understand their sales activity.
 
-## How to Use
 
-1. **Clone the Repository**: Clone this project repository from GitHub.
-2. **Set Up the Database**: Run the SQL scripts provided in the `database_setup.sql` file to create and populate the database.
-3. **Run the Queries**: Use the SQL queries provided in the `analysis_queries.sql` file to perform your analysis.
-4. **Explore and Modify**: Feel free to modify the queries to explore different aspects of the dataset or answer additional business questions.
-
-## Author - Zero Analyst
-
-This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
-
-### Stay Updated and Join the Community
-
-For more content on SQL, data analysis, and other data-related topics, make sure to follow me on social media and join our community:
-
-- **YouTube**: [Subscribe to my channel for tutorials and insights](https://www.youtube.com/@zero_analyst)
-- **Instagram**: [Follow me for daily tips and updates](https://www.instagram.com/zero_analyst/)
-- **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/najirr)
-- **Discord**: [Join our community to learn and grow together](https://discord.gg/36h5f2Z5PK)
-
+--> This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
 Thank you for your support, and I look forward to connecting with you!
